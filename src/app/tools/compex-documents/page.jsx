@@ -29,7 +29,7 @@ const DOCUMENT_CONFIG = {
     minSizeKB: COMPEX_PHOTO_SPEC.minSizeKB,
     maxSizeKB: COMPEX_PHOTO_SPEC.maxSizeKB,
     multi: false,
-    tooltip: "Upload one recent passport-size photograph with a white background (JPG, JPEG, or PNG). The tool creates a JPG/JPEG photo at 120–180 KB, 200 DPI, and 3.5 cm × 4.5 cm (276 × 354 px).",
+    tooltip: "Upload one recent passport-size photograph with a white background (JPG, JPEG, or PNG). The tool creates a JPG/JPEG photo at 100–200 KB, 200 DPI, and 700 × 900 px (3.5:4.5 aspect ratio).",
   },
   signature: {
     label: "Upload your scanned signature:*",
@@ -536,7 +536,7 @@ export default function CompexDocuments() {
 
                     {key === "photo" && doc.compliance && (
                       <div className="w-full mb-4 rounded-lg border border-green-500/20 bg-green-500/5 px-3 py-2 text-xs text-green-300 text-center">
-                        JPEG · {(doc.processedFile.size / 1024).toFixed(1)} KB · 276 × 354 px · 200 DPI · 3.5 × 4.5 cm
+                        JPEG · {(doc.processedFile.size / 1024).toFixed(1)} KB · 700 × 900 px · 200 DPI · 3.5:4.5 aspect ratio
                       </div>
                     )}
 

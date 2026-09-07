@@ -1,11 +1,11 @@
 import imageCompression from 'browser-image-compression';
 
 export const COMPEX_PHOTO_SPEC = {
-  width: 276,
-  height: 354,
+  width: 700,
+  height: 900,
   dpi: 200,
-  minSizeKB: 120,
-  maxSizeKB: 180,
+  minSizeKB: 100,
+  maxSizeKB: 200,
   targetSizeKB: 150,
 };
 
@@ -206,7 +206,7 @@ export async function createCompexPhoto(file) {
   let best = await canvasToJpeg(canvas, low);
 
   if (best.size > maximumBytes) {
-    throw new Error('This photo cannot be compressed below 180 KB. Please use a simpler image.');
+    throw new Error('This photo cannot be compressed below 200 KB. Please use a simpler image.');
   }
 
   for (let attempt = 0; attempt < 8; attempt += 1) {
@@ -226,7 +226,7 @@ export async function createCompexPhoto(file) {
     output = new Blob([output, new Uint8Array(targetBytes - output.size)], { type: 'image/jpeg' });
   }
   if (output.size < COMPEX_PHOTO_SPEC.minSizeKB * 1024 || output.size > COMPEX_PHOTO_SPEC.maxSizeKB * 1024) {
-    throw new Error('The generated photo does not meet the 120–180 KB size requirement.');
+    throw new Error('The generated photo does not meet the 100–200 KB size requirement.');
   }
 
   return new File([output], 'passport_photo.jpg', { type: 'image/jpeg' });
