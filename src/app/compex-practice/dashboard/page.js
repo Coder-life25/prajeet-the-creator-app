@@ -14,7 +14,7 @@ export default function DashboardPage() {
       <div className="blob w-80 h-80 bg-accent-500 bottom-20 -right-40 opacity-[0.08]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
           <div>
             <h1 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] mb-2">
               Welcome 👋
@@ -30,9 +30,27 @@ export default function DashboardPage() {
           )}
         </div>
 
+        {/* SEO / informational intro — real, unique paragraph for search crawlers */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          className="mb-12 p-5 sm:p-6 rounded-2xl border border-dark-800/60 bg-dark-900/40"
+        >
+          <h2 className="text-lg font-bold text-white mb-2">Free COMPEX Exam Practice Sets</h2>
+          <p className="text-sm text-dark-300 leading-relaxed">
+            The COMPEX Scholarship exam is a highly competitive Computer-Based Test (CBT). To help
+            Nepalese students prepare, we have created 10 free model practice sets. These sets cover
+            Physics, Chemistry, Mathematics, Biology, and English exactly like the real exam. Each set
+            contains 120 questions and a 3-hour timer. Whether you are applying for Engineering (PCM) or
+            Pharmacy/Nursing (PCB), practicing these sets in sequence will help you manage your time and
+            score higher. you can separately practice the each subject present in the compex scholarship exam like physics, chemistry, math, english and biology. 
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
           className="mb-12 p-6 glass rounded-2xl border border-dark-800 flex flex-col sm:flex-row items-center justify-between gap-6"
         >
           <div>

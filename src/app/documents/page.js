@@ -16,7 +16,7 @@ export default function DocumentsPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
+          className="mb-8"
         >
           <span className="inline-block text-sm font-semibold text-emerald-400 tracking-wider uppercase mb-3">
             Document Guidance
@@ -25,7 +25,31 @@ export default function DocumentsPage() {
             Required <span className="gradient-text">Formats</span>
           </h1>
           <p className="text-dark-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-            Reference samples for English proficiency letters, translation formats, and physical fitness certificates for your scholarship application.
+            Reference samples for English proficiency letters, translation
+            formats, and physical fitness certificates for your scholarship
+            application.
+          </p>
+        </motion.div>
+
+        {/* SEO / informational intro — real, unique paragraph for search crawlers */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
+          className="mb-12 p-5 sm:p-6 rounded-2xl border border-dark-800/60 bg-dark-900/40"
+        >
+          <h2 className="text-lg font-bold text-white mb-2">
+            Document Guidance for Scholarships
+          </h2>
+          <p className="text-sm text-dark-300 leading-relaxed">
+            Getting your documents ready is the most important part of the ICCR,
+            COMPEX and various scholarship application. Many students get
+            rejected because their documents are in the wrong format. On this
+            page, we provide real reference samples for English proficiency
+            letters, English translation formats for Nepali citizenship
+            certificates, and physical fitness certificates. Click on the
+            samples below to see exactly how your documents should look before
+            you upload them to the different scholarship portal.
           </p>
         </motion.div>
 
@@ -79,15 +103,19 @@ export default function DocumentsPage() {
                 <div key={i} className="group space-y-4">
                   <div className="flex items-center justify-between border-l-4 border-emerald-500 pl-4">
                     <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                       {sample.title}
+                      {sample.title}
                     </h3>
                   </div>
-                  
+
                   <div className="relative aspect-[3/4] sm:aspect-[4/5] md:aspect-auto md:min-h-[850px] w-full overflow-hidden rounded-2xl border border-dark-700 bg-dark-900 group-hover:border-primary-500/30 transition-all duration-500 shadow-xl">
                     <div className="absolute inset-0 flex items-center justify-center text-dark-800 pointer-events-none z-0">
                       <div className="text-center">
-                        <span className="text-6xl block mb-4 opacity-5">📄</span>
-                        <p className="text-xs font-medium uppercase tracking-widest opacity-10">Sample Preview</p>
+                        <span className="text-6xl block mb-4 opacity-5">
+                          📄
+                        </span>
+                        <p className="text-xs font-medium uppercase tracking-widest opacity-10">
+                          Sample Preview
+                        </p>
                       </div>
                     </div>
                     <Image
@@ -99,7 +127,7 @@ export default function DocumentsPage() {
                       unoptimized
                     />
                   </div>
-                  
+
                   <div className="p-4 rounded-xl bg-dark-800/30 border border-dark-700/40 backdrop-blur-sm">
                     <p className="text-sm sm:text-base text-dark-200 leading-relaxed font-medium">
                       {sample.description}

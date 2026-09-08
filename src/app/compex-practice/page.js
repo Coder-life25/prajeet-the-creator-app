@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useStream } from "@/context/StreamContext";
 
 export default function CompexLandingPage() {
- const { stream } = useStream();
+  const { stream } = useStream();
 
   return (
     <div className="min-h-screen bg-dark-950 pt-28 pb-20 relative overflow-hidden animated-gradient grid-bg">
@@ -45,6 +45,36 @@ export default function CompexLandingPage() {
         >
           120 Questions | 3-Hour Timer | Instant Results | Subject Breakdown
         </motion.p>
+
+        {/* ── SEO Text Block for Google AdSense ──────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="p-8 rounded-2xl glass-light border border-dark-800 max-w-4xl mx-auto mb-16 text-left"
+        >
+          <h2 className="text-2xl font-bold text-white mb-4">
+            Start Your COMPEX Exam Preparation
+          </h2>
+          <p className="mb-4 text-dark-300 leading-relaxed">
+            Welcome to the COMPEX Scholarship Exam Practice Portal. The COMPEX
+            exam is the gateway to a fully funded undergraduate scholarship from
+            the Embassy of India. To help you succeed, we offer full-length mock
+            tests that perfectly simulate the actual Computer-Based Test (CBT)
+            environment.
+          </p>
+          <p className="text-dark-300 leading-relaxed">
+            Before you begin, please select your target stream. The{" "}
+            <span className="text-primary-300 font-semibold">PCM Stream</span>{" "}
+            (Physics, Chemistry, Mathematics, English) is for students applying
+            for Engineering (B.Tech/BE). The{" "}
+            <span className="text-emerald-300 font-semibold">PCB Stream</span>{" "}
+            (Physics, Chemistry, Biology, English) is for students applying for
+            Pharmacy, Agriculture, Food Technology, and Nursing. Choose your
+            stream below to access 10 complete model sets, each containing 120
+            questions and a strict 3-hour timer.
+          </p>
+        </motion.div>
 
         {/* Stream Cards */}
         <motion.div
@@ -118,7 +148,6 @@ export default function CompexLandingPage() {
           </div>
         </motion.div>
 
-        {/* CTA Buttons */}
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

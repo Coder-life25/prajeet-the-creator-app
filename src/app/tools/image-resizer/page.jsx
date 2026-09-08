@@ -314,6 +314,20 @@ export default function ImageResizer() {
         <p className="text-dark-300">Resize and compress your images entirely in your browser.</p>
       </div>
 
+      {/* SEO / informational intro — sits above the tool, gives crawlers real content to index */}
+      <div className="mb-8 p-5 sm:p-6 rounded-2xl border border-dark-800/60 bg-dark-900/40">
+        <h2 className="text-lg font-bold text-white mb-2">About Our Image Resizer Tool</h2>
+        <p className="text-sm text-dark-300 leading-relaxed">
+          When applying for the COMPEX or ICCR scholarship, the Embassy of India has strict rules for
+          photo sizes. Your passport photo must be exactly 100&nbsp;KB to 200&nbsp;KB, and your signature
+          must be 80&nbsp;KB to 150&nbsp;KB. If the file is too large, the portal will reject your
+          application. Our free Image Resizer tool helps students compress their photos
+          instantly. 100% of the processing happens in your browser, so your private documents are never
+          uploaded to a server. Simply upload your image, enter the required width and height in pixels,
+          and download your perfectly sized photo.
+        </p>
+      </div>
+
       <PrivacyBanner />
 
       <div className="flex flex-col lg:flex-row gap-0 bg-dark-950 rounded-2xl overflow-hidden border border-dark-800 shadow-2xl">
