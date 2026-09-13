@@ -253,10 +253,22 @@ export const updates = [
     title: "COMPEX 2026–27: Updated Email ID for Technical Issues 📢",
     content:
       "Important Notice for all COMPEX 2026–27 candidates!\n\nDue to a technical issue with the previously shared email ID, candidates are requested to send all technical queries/issues related to COMPEX 2026–27 to the new email ID:\n\n📧 helpdeskcompex2026@gmail.com\n\nCandidates who have already sent their technical issues on or after 07.09.2026 are also requested to resend their emails to the new email ID.\n\nPlease use the new email ID for all technical issues related to COMPEX 2026–27 with immediate effect.",
+    type: "message",
+    tags: ["COMPEX", "Scholarship", "Technical Issues", "Email Update"],
+    source: "COMPEX 2026–27",
+    isPinned: false,
+    publishedAt: "2026-09-08",
+  },
+  {
+    id: 15,
+    slug: "compex-scholarship-updated-email-id-technical-issues-2026-27",
+    title: "COMPEX 2026–27: Updated Email ID for Technical Issues 📢",
+    content:
+      "Important Notice for all COMPEX 2026–27 candidates!\n\nDue to a technical issue with the previously shared email ID, candidates are requested to send their technical queries/issues related to COMPEX 2026–27 to the new email ID:\n\n📧 examgrievance@edcil.co.in\n\nCandidates who have already sent their technical issues on or after 07.09.2026 are also requested to resend their emails to the new email ID.\n\nCandidates are requested to use the new email ID for all technical issues related to COMPEX 2026–27 with immediate effect.",
     type: "announcement",
     tags: ["COMPEX", "Scholarship", "Technical Issues", "Email Update"],
     source: "COMPEX 2026–27",
     isPinned: true,
-    publishedAt: "2026-09-08",
+    publishedAt: "2026-09-13",
   },
 ];

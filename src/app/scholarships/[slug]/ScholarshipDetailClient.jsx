@@ -746,10 +746,10 @@ export default function ScholarshipDetailClient({ scholarship }) {
                 If you face difficulties filling out the online application,
                 contact the official helpdesk via email at{" "}
                 <a
-                  href="mailto:helpdeskcompex@gmail.com"
+                  href="mailto:examgrievance@edcil.co.in"
                   className="text-primary-400 hover:text-primary-300 underline transition-colors"
                 >
-                  helpdeskcompex@gmail.com
+                  examgrievance@edcil.co.in
                 </a>{" "}
                 (10 AM to 5 PM on working days).
               </p>
