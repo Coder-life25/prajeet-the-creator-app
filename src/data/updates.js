@@ -271,4 +271,24 @@ export const updates = [
     isPinned: true,
     publishedAt: "2026-09-13",
   },
+
+  {
+    id: 16,
+    slug: "compex-scholarship-exam-schedule-mock-test-2026-27",
+    title: "COMPEX Scholarship 2026-27: Exam Schedule & Mock Test",
+    content:
+      "The COMPEX Scholarship 2026-27 examination schedule has been announced. Candidates can check the complete exam date, shift, entry time, exam time, and subject-wise schedule. I have also provided the COMPEX mock test to help students prepare for the examination.",
+    type: "announcement",
+    tags: ["COMPEX", "Scholarship", "Exam", "Mock Test", "2026-27"],
+    source: "Prajeet the Creator",
+    isPinned: true,
+    publishedAt: "2026-09-20",
+    links: [
+      {
+        label: "Download COMPEX Exam Schedule PDF",
+        url: "https://www.indembkathmandu.gov.in/storage/press-release/6472854.pdf",
+        type: "link",
+      },
+    ],
+  },
 ];
