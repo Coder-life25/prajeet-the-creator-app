@@ -1,5 +1,5 @@
 import { scholarships } from "@/data/scholarships";
-import ScholarshipDetailClient from "./ScholarshipDetailClient";
+import ScholarshipDetail from "./ScholarshipDetail";
 import { notFound } from "next/navigation";
 
 const SITE_URL = "https://www.prajeetthecreator.com";
@@ -78,7 +78,7 @@ export default async function ScholarshipDetailPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <ScholarshipDetailClient scholarship={scholarship} />
+      <ScholarshipDetail scholarship={scholarship} />
     </>
   );
 }

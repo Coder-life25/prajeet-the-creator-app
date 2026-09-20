@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+export const metadata = {
+  alternates: { canonical: "/tools" },
+};
+
 export default function ToolsLandingPage() {
   const tools = [
     {

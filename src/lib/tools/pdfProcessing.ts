@@ -1,8 +1,20 @@
 import { PDFDocument } from 'pdf-lib';
-import * as pdfjsLib from 'pdfjs-dist/build/pdf.mjs';
 
-if (typeof window !== 'undefined') {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+// pdfjs-dist touches browser globals (DOMMatrix, etc.) at module-evaluation
+// time, so it must never be imported at the top level: these helpers are
+// pulled in by Client Components that Next.js still pre-renders on the server.
+// Load it lazily, in the browser, the first time a function needs it.
+let pdfjsPromise;
+async function loadPdfjs() {
+  if (!pdfjsPromise) {
+    pdfjsPromise = import('pdfjs-dist/build/pdf.mjs').then((pdfjsLib) => {
+      if (typeof window !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+      }
+      return pdfjsLib;
+    });
+  }
+  return pdfjsPromise;
 }
 
 /**
@@ -10,7 +22,7 @@ if (typeof window !== 'undefined') {
  */
 export async function generatePdfThumbnail(file) {
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await (await loadPdfjs()).getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
   const page = await pdf.getPage(1);
   const viewport = page.getViewport({ scale: 1.0 });
   const canvas = document.createElement('canvas');
@@ -87,7 +99,7 @@ export async function compressPdf(file, level = 'recommended') {
     }
 
     // 2. For extreme and recommended, render pages using PDF.js and re-embed them as JPEGs
-    const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+    const pdf = await (await loadPdfjs()).getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
     const numPages = pdf.numPages;
     const pdfDoc = await PDFDocument.create();
 
@@ -159,7 +171,7 @@ export async function compressPdf(file, level = 'recommended') {
  */
 export async function pdfPageToJpg(file) {
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await (await loadPdfjs()).getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
   const page = await pdf.getPage(1);
   
   // Set scale to a reasonable resolution (e.g. 2.0) for good quality rendering
@@ -193,7 +205,7 @@ export async function allPdfPagesToJpg(
   quality = 0.92
 ): Promise<File[]> {
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+  const pdf = await (await loadPdfjs()).getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
   const numPages = pdf.numPages;
   const baseName = file.name.replace(/\.pdf$/i, '');
   const results: File[] = [];

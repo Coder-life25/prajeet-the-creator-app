@@ -1,33 +1,30 @@
-"use client";
-
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useStream } from "@/context/StreamContext";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { getSet } from "@/data/compex";
-import { use } from "react";
+import { allSets, getSet } from "@/data/compex";
+import StreamLabel from "./StreamLabel";
+import SubjectGrid from "./SubjectGrid";
 
-export default function ModelSetPage({ params }) {
-  const { setId } = use(params);
-  const router = useRouter();
-  const { stream } = useStream();
+export function generateStaticParams() {
+  return allSets.map((s) => ({ setId: s.id }));
+}
 
+export async function generateMetadata({ params }) {
+  const { setId } = await params;
   const modelSet = getSet(setId);
 
-  useEffect(() => {
-    if (!stream) {
-      router.push("/compex-practice/dashboard");
-    }
-  }, [stream, router]);
-
-  if (!stream) {
-    return (
-      <div className="min-h-screen bg-dark-950 flex items-center justify-center">
-        <div className="w-8 h-8 rounded-full border-2 border-primary-500 border-t-transparent animate-spin" />
-      </div>
-    );
+  if (!modelSet) {
+    return { title: "Model Set Not Found" };
   }
+
+  return {
+    title: `${modelSet.title} — COMPEX Practice`,
+    description: `Practice ${modelSet.title} of the COMPEX scholarship exam: full 120-question, 3-hour simulation or subject-wise practice (30 questions, 1 minute each).`,
+    alternates: { canonical: `/compex-practice/${setId}` },
+  };
+}
+
+export default async function ModelSetPage({ params }) {
+  const { setId } = await params;
+  const modelSet = getSet(setId);
 
   if (!modelSet) {
     return (
@@ -41,16 +38,6 @@ export default function ModelSetPage({ params }) {
     );
   }
 
-  const subjects = [
-    { id: "physics", name: "Physics", icon: "⚡", color: "blue" },
-    { id: "chemistry", name: "Chemistry", icon: "🧪", color: "purple" },
-    { id: "english", name: "English", icon: "📚", color: "amber" },
-    ...(stream === "pcm"
-      ? [{ id: "math", name: "Mathematics", icon: "📐", color: "green" }]
-      : [{ id: "biology", name: "Biology", icon: "🧬", color: "emerald" }]
-    )
-  ];
-
   return (
     <div className="min-h-screen bg-dark-950 pt-28 pb-20 relative overflow-hidden grid-bg">
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,13 +49,9 @@ export default function ModelSetPage({ params }) {
         <h1 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] mb-2">
           {modelSet.title}
         </h1>
-        <p className="text-dark-400 mb-12">Stream: <span className="uppercase text-white font-bold">{stream}</span></p>
+        <StreamLabel />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
-        >
+        <div className="mb-12 animate-fade-up">
           <div className="p-8 glass rounded-3xl border border-primary-500/30 glow relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 opacity-10">
               <span className="text-9xl">⏱</span>
@@ -96,13 +79,9 @@ export default function ModelSetPage({ params }) {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-        >
+        <div className="animate-fade-up animation-delay-100">
           <h2 className="text-2xl font-bold mb-6 font-[family-name:var(--font-display)] flex items-center gap-2">
             <span>🎯</span> Practice by Subject
           </h2>
@@ -110,34 +89,8 @@ export default function ModelSetPage({ params }) {
             Focus on one subject at a time. Each subject has 30 questions with a strict 1-minute timer per question.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {subjects.map((sub, i) => (
-              <motion.div
-                key={sub.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + (i * 0.05) }}
-              >
-                <Link
-                  href={`/compex-practice/${setId}/${sub.id}`}
-                  className="block p-6 glass-light rounded-2xl border border-dark-800 hover:border-white/20 transition-all card-hover group"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl">{sub.icon}</span>
-                      <h3 className="text-lg font-bold">{sub.name}</h3>
-                    </div>
-                    <span className="text-dark-500 group-hover:text-primary-400 transition-colors">→</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs text-dark-400">
-                    <span className="px-2.5 py-1 rounded bg-dark-900">30 Questions</span>
-                    <span className="px-2.5 py-1 rounded bg-dark-900 text-amber-400/80">1 min / Q</span>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+          <SubjectGrid setId={setId} />
+        </div>
 
       </div>
     </div>

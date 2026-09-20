@@ -1,8 +1,9 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { scholarships } from "@/data/scholarships";
+
+export const metadata = {
+  alternates: { canonical: "/scholarships" },
+};
 
 export default function ScholarshipsPage() {
   return (
@@ -13,31 +14,17 @@ export default function ScholarshipsPage() {
         <div className="blob w-64 h-64 bg-accent-500 -bottom-20 -left-20" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block text-sm font-semibold text-primary-400 tracking-wider uppercase mb-3"
-          >
+          <span className="inline-block text-sm font-semibold text-primary-400 tracking-wider uppercase mb-3 animate-fade-up">
             Scholarships
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-bold font-[family-name:var(--font-display)] mb-4"
-          >
+          </span>
+          <h1 className="text-4xl sm:text-5xl font-bold font-[family-name:var(--font-display)] mb-4 animate-fade-up animation-delay-100">
             Explore <span className="gradient-text">Scholarships</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-dark-400 max-w-2xl text-lg"
-          >
+          </h1>
+          <p className="text-dark-400 max-w-2xl text-lg animate-fade-up animation-delay-200">
             Complete information on major scholarships for studying in India.
             Each scholarship includes eligibility, required documents,
             application steps, and common mistakes to avoid.
-          </motion.p>
+          </p>
         </div>
       </div>
 
@@ -45,11 +32,10 @@ export default function ScholarshipsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {scholarships.map((scholarship, i) => (
-            <motion.div
+            <div
               key={scholarship.slug}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + i * 0.08 }}
+              className="animate-fade-up"
+              style={{ animationDelay: `${0.1 + i * 0.08}s` }}
             >
               <Link
                 href={`/scholarships/${scholarship.slug}`}
@@ -131,7 +117,7 @@ export default function ScholarshipsPage() {
                   </div>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

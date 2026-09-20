@@ -1,6 +1,7 @@
 export const metadata = {
-  title: "Privacy Policy | Prajeet the Creator",
+  title: "Privacy Policy",
   description: "Privacy Policy and Disclaimer for Prajeet the Creator.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicy() {

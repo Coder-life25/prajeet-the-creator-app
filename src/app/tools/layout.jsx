@@ -1,5 +1,10 @@
 export const metadata = {
-  title: "Document Tools | Prajeet the Creator",
+  // A plain-string title here would replace the root layout's title.template
+  // for every /tools/* page, so re-declare the template for this subtree.
+  title: {
+    default: "Document Tools",
+    template: "%s | Prajeet the Creator",
+  },
   description: "Free online tools to resize photos, compress PDFs, and prepare documents for scholarship applications. 100% secure, processed locally in your browser.",
 };
 

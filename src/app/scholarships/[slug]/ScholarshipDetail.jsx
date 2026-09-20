@@ -1,18 +1,11 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function ScholarshipDetailClient({ scholarship }) {
+export default function ScholarshipDetail({ scholarship }) {
   return (
     <div className="min-h-screen bg-dark-950 pt-28 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 text-sm text-dark-500 mb-8"
-        >
+        <div className="flex items-center gap-2 text-sm text-dark-500 mb-8 animate-fade-up">
           <Link href="/" className="hover:text-dark-300 transition-colors">
             Home
           </Link>
@@ -25,14 +18,10 @@ export default function ScholarshipDetailClient({ scholarship }) {
           </Link>
           <span>/</span>
           <span className="text-dark-300">{scholarship.shortName}</span>
-        </motion.div>
+        </div>
 
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
-        >
+        <div className="mb-12 animate-fade-up">
           <div className="flex items-center gap-4 mb-4">
             <span className="text-5xl">{scholarship.icon}</span>
             <div>
@@ -100,7 +89,7 @@ export default function ScholarshipDetailClient({ scholarship }) {
               </div>
             </a>
           </div>
-        </motion.div>
+        </div>
 
         {/* Sections */}
         <div className="space-y-10">
@@ -251,12 +240,9 @@ export default function ScholarshipDetailClient({ scholarship }) {
 
           {/* ── COMPEX-ONLY: Document Tool CTA ── */}
           {scholarship.slug === "compex-scholarship" && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.115 }}
-              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl border border-primary-500/20 bg-primary-900/10"
+            <div
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl border border-primary-500/20 bg-primary-900/10 animate-fade-up"
+              style={{ animationDelay: "0.115s" }}
             >
               <div>
                 <h3 className="font-bold text-primary-300 flex items-center gap-2 mb-1">
@@ -273,7 +259,7 @@ export default function ScholarshipDetailClient({ scholarship }) {
               >
                 Go to COMPEX Document Prep Tool
               </Link>
-            </motion.div>
+            </div>
           )}
 
           {/* ── COMPEX-ONLY: Important Dates Table ── */}
@@ -329,12 +315,9 @@ export default function ScholarshipDetailClient({ scholarship }) {
 
           {/* ── COMPEX-ONLY: Apply Now Link ── */}
           {scholarship.slug === "compex-scholarship" && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.13 }}
-              className="p-6 rounded-2xl bg-gradient-to-r from-primary-600/10 to-accent-500/10 border border-primary-500/20 text-center"
+            <div
+              className="p-6 rounded-2xl bg-gradient-to-r from-primary-600/10 to-accent-500/10 border border-primary-500/20 text-center animate-fade-up"
+              style={{ animationDelay: "0.13s" }}
             >
               <h3 className="font-bold text-lg mb-2 text-primary-300">
                 Ready to Apply?
@@ -360,7 +343,7 @@ export default function ScholarshipDetailClient({ scholarship }) {
                   />
                 </svg>
               </a>
-            </motion.div>
+            </div>
           )}
 
           {/* ── COMPEX-ONLY: Course-wise Eligibility Matrix ── */}
@@ -602,12 +585,9 @@ export default function ScholarshipDetailClient({ scholarship }) {
 
           {/* ── COMPEX-ONLY: Free Preparation CTA ── */}
           {scholarship.slug === "compex-scholarship" && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.18 }}
-              className="p-6 sm:p-8 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-900/20 to-teal-900/10 space-y-6"
+            <div
+              className="p-6 sm:p-8 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-900/20 to-teal-900/10 space-y-6 animate-fade-up"
+              style={{ animationDelay: "0.18s" }}
             >
               {/* Practice CTA */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -627,7 +607,7 @@ export default function ScholarshipDetailClient({ scholarship }) {
                   Click here to practice for the COMPEX Exam
                 </Link>
               </div>
-            </motion.div>
+            </div>
           )}
 
           {/* Application Steps */}
@@ -651,12 +631,9 @@ export default function ScholarshipDetailClient({ scholarship }) {
 
           {/* ── COMPEX-ONLY: FAQs Link ── */}
           {scholarship.slug === "compex-scholarship" && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.22 }}
-              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl border border-primary-500/20 bg-primary-900/10"
+            <div
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl border border-primary-500/20 bg-primary-900/10 animate-fade-up"
+              style={{ animationDelay: "0.22s" }}
             >
               <div>
                 <h3 className="font-semibold text-primary-300 flex items-center gap-2 mb-1">
@@ -673,7 +650,7 @@ export default function ScholarshipDetailClient({ scholarship }) {
               >
                 View COMPEX FAQs →
               </Link>
-            </motion.div>
+            </div>
           )}
 
           {/* ── COMPEX-ONLY: Participating Universities ── */}
@@ -764,12 +741,7 @@ export default function ScholarshipDetailClient({ scholarship }) {
           )}
 
           {/* Official Link */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="p-6 rounded-2xl bg-gradient-to-r from-primary-600/10 to-accent-500/10 border border-primary-500/20 text-center"
-          >
+          <div className="p-6 rounded-2xl bg-gradient-to-r from-primary-600/10 to-accent-500/10 border border-primary-500/20 text-center animate-fade-up">
             <h3 className="font-bold text-lg mb-2">Ready to Apply?</h3>
             <p className="text-dark-400 text-sm mb-4">
               Always apply through the official portal. Double-check all your
@@ -804,7 +776,7 @@ export default function ScholarshipDetailClient({ scholarship }) {
                 ← Back to All Scholarships
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
@@ -813,19 +785,16 @@ export default function ScholarshipDetailClient({ scholarship }) {
 
 function DetailSection({ title, icon, delay = 0, id, children }) {
   return (
-    <motion.section
+    <section
       id={id}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay }}
-      className="p-6 sm:p-8 rounded-2xl border border-dark-800/50 bg-dark-800/20"
+      className="p-6 sm:p-8 rounded-2xl border border-dark-800/50 bg-dark-800/20 animate-fade-up"
+      style={{ animationDelay: `${delay}s` }}
     >
       <h2 className="flex items-center gap-3 text-xl font-bold mb-6">
         <span className="text-2xl">{icon}</span>
         {title}
       </h2>
       {children}
-    </motion.section>
+    </section>
   );
 }

@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { scholarships } from "@/data/scholarships";
-import FAQClient from "./FAQClient";
 import { faqsData } from "@/data/faqs";
+import FAQAccordion from "./FAQAccordion";
 
 export function generateStaticParams() {
   return scholarships.map((s) => ({
@@ -32,5 +33,54 @@ export default async function FAQPage({ params }) {
     );
   }
 
-  return <FAQClient scholarship={scholarship} faqs={faqs} />;
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
+  return (
+    <div className="min-h-screen bg-dark-950 pt-28 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb */}
+        <div className="animate-fade-up flex items-center gap-2 text-sm text-dark-500 mb-8">
+          <Link href="/" className="hover:text-dark-300 transition-colors">
+            Home
+          </Link>
+          <span>/</span>
+          <span className="text-dark-300">FAQs</span>
+          <span>/</span>
+          <span className="text-dark-300">{scholarship.shortName}</span>
+        </div>
+
+        {/* Header */}
+        <div className="animate-fade-up mb-12">
+          <span className="inline-block text-sm font-semibold text-primary-400 tracking-wider uppercase mb-3">
+            Frequently Asked Questions
+          </span>
+          <h1 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] mb-4">
+            {scholarship.title} <span className="gradient-text">FAQs</span>
+          </h1>
+          <p className="text-dark-400 text-lg">
+            Find answers to common questions about the {scholarship.shortName}{" "}
+            application process, eligibility, and benefits.
+          </p>
+        </div>
+
+        {/* FAQs List */}
+        <FAQAccordion faqs={faqs} />
+      </div>
+    </div>
+  );
 }

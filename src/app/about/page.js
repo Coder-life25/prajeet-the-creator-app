@@ -1,8 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
-import myImage from "../../../public/images/prajeet-shah.png";
 
 const milestones = [
   {
@@ -74,11 +70,7 @@ export default function AboutPage() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16 animate-fade-up">
           <span className="inline-block text-sm font-semibold text-primary-400 tracking-wider uppercase mb-3">
             About
           </span>
@@ -90,15 +82,10 @@ export default function AboutPage() {
             understand real opportunities, and make the right decisions for
             higher education in India and Nepal.
           </p>
-        </motion.div>
+        </div>
 
         {/* Profile Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="relative p-8 rounded-2xl border border-dark-800/50 bg-dark-800/20 mb-16"
-        >
+        <div className="relative p-8 rounded-2xl border border-dark-800/50 bg-dark-800/20 mb-16 animate-fade-up animation-delay-100">
           <div className="flex flex-col md:flex-row gap-8 items-center">
             {/* Avatar */}
             {/* Avatar */}
@@ -149,15 +136,10 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Mission */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16 animate-fade-up">
           <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center mb-8">
             My <span className="gradient-text">Mission</span>
           </h2>
@@ -168,55 +150,39 @@ export default function AboutPage() {
               India — regardless of where they come from.&rdquo;
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Values */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16 animate-fade-up">
           <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center mb-8">
             What I <span className="gradient-text">Stand For</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {values.map((value, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-6 rounded-2xl border border-dark-800/50 bg-dark-800/20 card-hover"
+                style={{ animationDelay: `${i * 0.1}s` }}
+                className="p-6 rounded-2xl border border-dark-800/50 bg-dark-800/20 card-hover animate-fade-up"
               >
                 <span className="text-3xl mb-3 block">{value.icon}</span>
                 <h3 className="font-bold mb-2">{value.title}</h3>
                 <p className="text-sm text-dark-400">{value.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Journey Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16 animate-fade-up">
           <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center mb-8">
             The <span className="gradient-text">Journey</span>
           </h2>
           <div className="space-y-6">
             {milestones.map((milestone, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-6 items-start"
+                style={{ animationDelay: `${i * 0.1}s` }}
+                className="flex gap-6 items-start animate-fade-in-left"
               >
                 <div className="relative flex-shrink-0">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-xs font-bold">
@@ -235,10 +201,10 @@ export default function AboutPage() {
                     {milestone.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* CTA */}
         {/* <motion.div
