@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function HeroSection() {
@@ -24,37 +21,22 @@ export default function HeroSection() {
         </motion.div> */}
 
         {/* Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-[family-name:var(--font-display)] leading-tight mb-6"
-        >
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-[family-name:var(--font-display)] leading-tight mb-6 animate-fade-up animation-delay-100">
           Your Complete Guide to Scholarships <br />
           <span className="gradient-text-vibrant">&</span>
           <br />
           <span className="text-dark-300"> Admission in India</span>
-        </motion.h1>
+        </h1>
 
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl text-dark-400 max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
+        <p className="text-lg sm:text-xl text-dark-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up animation-delay-200">
           Helping students understand scholarships, applications & embassy
           updates. Get step-by-step guidance for ICCR, COMPEX, Study in India
           and more.
-        </motion.p>
+        </p>
 
         {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up animation-delay-300">
           <Link
             href="/scholarships"
             className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:via-indigo-500 hover:to-purple-500 rounded-2xl text-base font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-indigo-500/30 w-full sm:w-auto"
@@ -91,7 +73,7 @@ export default function HeroSection() {
             </svg>
             Watch on YouTube
           </a>
-        </motion.div>
+        </div>
 
         {/* Stats */}
         {/* <motion.div

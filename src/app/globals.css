@@ -165,6 +165,63 @@ body {
   animation: pulseGlow 2s ease-in-out infinite;
 }
 
+/* === ENTRANCE ANIMATIONS (CSS-only, safe for Server Components) === */
+/* Replaces framer-motion fade-ups on static content. The text is plain HTML;
+   the animation runs from a stylesheet, so crawlers and no-JS clients see it. */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes drawStroke {
+  from { stroke-dashoffset: 40; opacity: 0; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+
+.animate-draw-stroke {
+  stroke-dasharray: 40;
+  animation: drawStroke 0.4s ease-out both;
+}
+
+/* Stagger helpers: pair with an .animate-* class */
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in-left,
+  .animate-fade-in,
+  .animate-draw-stroke {
+    animation: none;
+  }
+}
+
 /* === CARD HOVER EFFECT === */
 
 .card-hover {

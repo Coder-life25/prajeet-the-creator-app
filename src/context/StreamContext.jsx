@@ -48,13 +48,13 @@ export const StreamProvider = ({ children }) => {
 
   const getAttempt = (attemptId) => attempts.find((a) => a.attemptId === attemptId);
 
+  // Children are always rendered. Gating them behind `loading` here replaced
+  // the server-rendered HTML of EVERY page with a spinner (useEffect never
+  // runs on the server), which is what hid the site's content from crawlers.
+  // Pages that depend on localStorage-backed state read `loading` themselves.
   return (
     <StreamContext.Provider value={{ stream, setStream, attempts, addAttempt, getAttempt, loading }}>
-      {!loading ? children : (
-        <div className="min-h-screen flex items-center justify-center bg-dark-950">
-          <div className="w-8 h-8 rounded-full border-2 border-primary-500 border-t-transparent animate-spin" />
-        </div>
-      )}
+      {children}
     </StreamContext.Provider>
   );
 };

@@ -1,6 +1,7 @@
 export const metadata = {
-  title: "Contact Us | Prajeet the Creator",
+  title: "Contact Us",
   description: "Get in touch with Prajeet the Creator for any questions about scholarships.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

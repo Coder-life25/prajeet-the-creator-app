@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { updates } from "@/data/updates";
 
@@ -13,7 +10,8 @@ const typeConfig = {
 };
 
 export default function LatestUpdates() {
-  const latestUpdates = updates
+  // Copy before sorting so the shared imported array is not mutated in place.
+  const latestUpdates = [...updates]
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
     .slice(0, 4);
 
@@ -22,28 +20,17 @@ export default function LatestUpdates() {
       {/* Decorative blobs */}
       <div className="blob w-96 h-96 bg-emerald-600/10 -top-20 -right-48" />
       <div className="blob w-80 h-80 bg-teal-500/10 bottom-0 -left-40" />
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 gap-4">
           <div>
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-block text-sm font-semibold text-emerald-400 tracking-wider uppercase mb-2"
-            >
+            <span className="inline-block text-sm font-semibold text-emerald-400 tracking-wider uppercase mb-2 animate-fade-up">
               Latest Updates
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)]"
-            >
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] animate-fade-up animation-delay-100">
               Stay <span className="gradient-text-emerald">Informed</span>
-            </motion.h2>
+            </h2>
           </div>
           <Link
             href="/updates"
@@ -67,13 +54,10 @@ export default function LatestUpdates() {
           {latestUpdates.map((update, i) => {
             const config = typeConfig[update.type] || typeConfig.message;
             return (
-              <motion.div
+              <div
                 key={update.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="h-full"
+                className="h-full animate-fade-up"
+                style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <Link
                   href={`/updates#${update.slug}`}
@@ -121,7 +105,7 @@ export default function LatestUpdates() {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             );
           })}
         </div>

@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const features = [
   {
     icon: "🎓",
@@ -32,73 +28,36 @@ const features = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 export default function WhatWeDo() {
   return (
     <section className="relative py-24 bg-dark-950/80 overflow-hidden">
       {/* Subtle Background Elements */}
       <div className="blob w-72 h-72 bg-blue-600/5 top-0 left-1/4" />
       <div className="blob w-72 h-72 bg-indigo-600/5 bottom-0 right-1/4" />
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block text-sm font-semibold text-primary-400 tracking-wider uppercase mb-3"
-          >
+          <span className="inline-block text-sm font-semibold text-primary-400 tracking-wider uppercase mb-3 animate-fade-up">
             What We Do
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] mb-4"
-          >
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] mb-4 animate-fade-up animation-delay-100">
             Everything You Need for Your{" "}
             <span className="gradient-text">Scholarship Journey</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-dark-400 max-w-2xl mx-auto"
-          >
+          </h2>
+          <p className="text-dark-400 max-w-2xl mx-auto animate-fade-up animation-delay-200">
             From finding the right scholarships to preparing your documents
             — we guide you through every step of the process.
-          </motion.p>
+          </p>
         </div>
 
         {/* Cards */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((feature, i) => (
-            <motion.div
+            <div
               key={i}
-              variants={cardVariants}
-              className={`relative group p-8 rounded-2xl border ${feature.borderColor} bg-gradient-to-br ${feature.color} card-hover overflow-hidden`}
+              className={`relative group p-8 rounded-2xl border ${feature.borderColor} bg-gradient-to-br ${feature.color} card-hover overflow-hidden animate-fade-up`}
+              style={{ animationDelay: `${i * 0.15}s` }}
             >
               {/* Icon */}
               <div
@@ -117,9 +76,9 @@ export default function WhatWeDo() {
 
               {/* Hover glow */}
               <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary-500/5 to-transparent pointer-events-none" />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

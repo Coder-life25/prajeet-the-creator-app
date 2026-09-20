@@ -1,126 +1,48 @@
-"use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { featuredVideos } from "@/data/videos";
+import VideoGrid from "./VideoGrid";
 
 export default function FeaturedVideos() {
-  const [playingId, setPlayingId] = useState(null);
+  // Title/description are rendered here (server) and passed to the client
+  // grid as an element so the text is in the HTML while the player toggle
+  // stays interactive.
+  const items = featuredVideos.map((video) => ({
+    id: video.id,
+    youtubeId: video.youtubeId,
+    title: video.title,
+    meta: (
+      <div className="p-4">
+        <h3 className="font-semibold text-sm line-clamp-2 group-hover:text-primary-300 transition-colors mb-1">
+          {video.title}
+        </h3>
+        <p className="text-xs text-dark-400 line-clamp-2">
+          {video.description}
+        </p>
+      </div>
+    ),
+  }));
 
   return (
     <section className="relative py-24 bg-dark-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block text-sm font-semibold text-red-400 tracking-wider uppercase mb-2"
-          >
+          <span className="inline-block text-sm font-semibold text-red-400 tracking-wider uppercase mb-2 animate-fade-up">
             Featured Videos
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] mb-4"
-          >
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold font-[family-name:var(--font-display)] mb-4 animate-fade-up animation-delay-100">
             Learn from Our{" "}
             <span className="gradient-text">YouTube Channel</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-dark-400 max-w-xl mx-auto"
-          >
+          </h2>
+          <p className="text-dark-400 max-w-xl mx-auto animate-fade-in animation-delay-200">
             Watch detailed video guides on scholarship applications, document preparation, and embassy processes.
-          </motion.p>
+          </p>
         </div>
 
         {/* Videos Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredVideos.map((video, i) => (
-            <motion.div
-              key={video.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group"
-            >
-              <div className="rounded-2xl overflow-hidden border border-dark-800/50 bg-dark-800/30 card-hover">
-                {/* Thumbnail / Player */}
-                <div className="relative aspect-video bg-dark-800 flex items-center justify-center overflow-hidden">
-                  {playingId === video.id ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
-                      title={video.title}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  ) : (
-                    <>
-                      {video.youtubeId ? (
-                        <div 
-                          className="w-full h-full cursor-pointer relative group"
-                          onClick={() => setPlayingId(video.id)}
-                        >
-                          <img
-                            src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
-                            alt={video.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          {/* Play overlay */}
-                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div className="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform duration-300">
-                              <svg className="w-6 h-6 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M8 5v14l11-7z" />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-dark-800 to-dark-700 flex items-center justify-center">
-                          <div className="text-center p-4">
-                            <div className="w-12 h-12 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-2">
-                              <svg className="w-5 h-5 text-red-500 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M8 5v14l11-7z" />
-                              </svg>
-                            </div>
-                            <span className="text-xs text-dark-400">Video coming soon</span>
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="p-4">
-                  <h3 className="font-semibold text-sm line-clamp-2 group-hover:text-primary-300 transition-colors mb-1">
-                    {video.title}
-                  </h3>
-                  <p className="text-xs text-dark-400 line-clamp-2">
-                    {video.description}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <VideoGrid items={items} />
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-10"
-        >
+        <div className="text-center mt-10 animate-fade-up">
           <a
             href="https://youtube.com/@prajeetthecreator"
             target="_blank"
@@ -132,7 +54,7 @@ export default function FeaturedVideos() {
             </svg>
             View All Videos on YouTube
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

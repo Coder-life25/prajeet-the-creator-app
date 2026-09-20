@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Scholarships | Prajeet the Creator",
+  title: "Scholarships",
   description:
     "Explore scholarships to study in India — ICCR, COMPEX, Study in India, Mahatma Gandhi, Golden Jubilee, HJBSS and more.",
 };

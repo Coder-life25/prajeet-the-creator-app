@@ -40,7 +40,6 @@ export const metadata = {
     "prajeet shah",
     "prajeetshah",
   ],
-  alternates: { canonical: "/" },
 
   icons: {
     icon: "/images/new-logo.png",
